@@ -32,8 +32,28 @@ limitations under the License.
     <a href="below/another.html">Another page</a>
     <script>
 
-    // Script to register the service worker goes here
-
+    // TODO 2 Script to register the service worker goes here
+    /*
+        navigator = browser
+        cek apakah browser mendukung SW?
+        jika SW tidak didukung oleh browser, maka tampilkan 'Service worker not supported'
+    */
+    if  (!('serviceWorker'  in  navigator)) {
+        console.log('Service worker not supported');
+        //return;
+    } else {
+        /*
+            karena browser mendukung, maka SW didaftarkan untuk diinstal dengan nama 'service-worker.js' yang lokasinya harus jadi satu dengan file index.html
+            bentuk script spt di bawah disebut JS promises
+        */
+        navigator.serviceWorker.register('service-worker.js')
+        .then(function()    {
+                console.log('Registered');
+        })
+        .catch(function(error)  {
+                console.log('Registration   failed:',   error);
+        });
+    }
     </script>
   </body>
 </html>
